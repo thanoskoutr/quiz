@@ -60,16 +60,21 @@ func main() {
 		// Print question
 		fmt.Printf("Problem #%v: %s = ", i+1, quiz.question)
 
-		// Read answer
-		fmt.Scanln(&userAnswer)
-		userAnswer = strings.TrimSpace(userAnswer)
-
-		// Check answer
-		if userAnswer == quiz.answer {
-			score++
-		}
+		score = getAnswer(userAnswer, quiz, score)
 	}
 
 	// Print score
 	fmt.Printf("You scored %v out of %v\n", score, problemCount)
+}
+
+func getAnswer(userAnswer string, quiz Quiz, score int) int {
+	// Read answer
+	fmt.Scanln(&userAnswer)
+	userAnswer = strings.TrimSpace(userAnswer)
+
+	// Check answer
+	if userAnswer == quiz.answer {
+		score++
+	}
+	return score
 }
